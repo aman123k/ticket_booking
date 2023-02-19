@@ -64,7 +64,7 @@ function Screen() {
       );
     } else if (!card.match(cardNoPattern)) {
       return (
-        setError("Pelese enter card number"),
+        setError("Pelese enter valid card number"),
         setTimeout(() => {
           setError("");
         }, 1500)
@@ -87,25 +87,22 @@ function Screen() {
       );
     } else if (!cvv.match(cvvPattern)) {
       return (
-        setError("Pelese enter Cvv Number"),
+        setError("Pelese enter valid Cvv Number"),
         setTimeout(() => {
           setError("");
         }, 1500)
       );
     } else if (!zip.match(cord)) {
-      console.log("hello");
       return (
-        setError("Pelese enter Zip cord"),
+        setError("Pelese enter valid Zip cord"),
         setTimeout(() => {
           setError("");
         }, 1500)
       );
-    } else {
-      <Link to={`ticket/${Name}/${malls}/${showTime}/${selectedCeats}`}></Link>;
     }
   };
   return (
-    <section className="bg-[#06060D] relative pb-0.5 ">
+    <section className="bg-[#06060D] h-min relative pb-0.5 ">
       <header
         className=" flex items-center justify-between
          px-2 pt-4 pb-2.5 text-white "
@@ -230,7 +227,7 @@ function Screen() {
           </p>
         </div>
 
-        <div className=" bg-[#FAD73A] flex justify-between px-3 py-2.5 mb-4 items-center">
+        <div className=" bg-[#FAD73A] flex justify-between px-3 py-2.5 mb-4 mt-3 items-center">
           <p className=" font-normal">Toatal Amount : {price}</p>
           <button
             onClick={() =>
@@ -371,8 +368,9 @@ function Screen() {
       Error Notification
        */}
       <div
-        className={`bg-red-500 absolute rounded-md px-2 py-1 top-10 
-        left-[50%] translate-x-[-50%] duration-700 ease-in-out
+        className={`bg-red-500 fixed rounded-md
+         px-2 py-1 top-10 left-[50%] translate-x-[-50%]
+         duration-700 ease-in-out text-center text-sm
         ${error ? "translate-y-[0]" : "translate-y-[-100px]"} `}
       >
         {error}
