@@ -150,7 +150,7 @@ function Screen() {
             let backgroundColor = "";
             if (ceat.ceat_available === "available") {
               backgroundColor = "bg-[#4d4b4b]";
-            } else if (ceat.ceat_available === "block") {
+            } else if (ceat.ceat_available === "Unavailable") {
               backgroundColor = "bg-[#175a6b]";
             } else {
               backgroundColor = "bg-[#c07f1e]";
@@ -205,7 +205,7 @@ function Screen() {
           </div>
           <div className="flex flex-col items-center gap-1">
             <div className=" w-[1.3rem] h-[1.3rem] rounded-sm bg-[#175a6b] p-2"></div>
-            <p>Blocked</p>
+            <p>Unavailable</p>
           </div>
         </div>
         <div className="text-white px-3 flex justify-between items-center">
@@ -222,12 +222,12 @@ function Screen() {
               </ul>
             </div>
           </div>
-          <p className=" w-40 bg-[#222222] rounded-md px-4 py-3">
+          <p className=" w-40 bg-[#222222]  rounded-md px-4 py-3">
             Seat with Crown is a Premium Seat
           </p>
         </div>
 
-        <div className=" bg-[#FAD73A] flex justify-between px-3 py-2.5 mb-4 mt-3 items-center">
+        <div className=" bg-[#FAD73A] flex justify-between px-3 py-2.5 mb-4 mt-4 items-center">
           <p className=" font-normal">Toatal Amount : {price}</p>
           <button
             onClick={() =>
