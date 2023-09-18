@@ -56,17 +56,17 @@ function Screen() {
 
   const procidePayment = () => {
     if (zip === "" && card === "" && date === "" && cvv === "" && city === "") {
-      return toast.error("Pelese enter card details");
+      return toast.error("Please enter card details");
     } else if (!card.match(cardNoPattern)) {
-      return toast.error("Pelese enter valid card number");
+      return toast.error("Please enter valid card number");
     } else if (!date.match(datePattern)) {
-      return toast.error("Pelese enter Card Expriy date");
+      return toast.error("Please enter Card Expriy date");
     } else if (city === "") {
-      return toast.error("Pelese select City");
+      return toast.error("Please select City");
     } else if (!cvv.match(cvvPattern)) {
-      return toast.error("Pelese enter valid Cvv Number");
+      return toast.error("Please enter valid Cvv Number");
     } else if (!zip.match(cord)) {
-      return toast.error("Pelese enter valid Zip cord");
+      return toast.error("Please enter valid Zip cord");
     }
   };
   return (
