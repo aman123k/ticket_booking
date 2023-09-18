@@ -66,9 +66,9 @@ function Header() {
                   src={movie.image}
                   alt={movie.name}
                 />
-                <h1 className="text-[15px]">{movie.name}</h1>
-                <p className="text-[13px]">U/A - {movie.language}</p>
-                <p className="text-xs">{movie.genre}</p>
+                <h1 className="text-[15px] uppercase">{movie.name}</h1>
+                <p className="text-[13px] capitalize">U/A - {movie.language}</p>
+                <p className="text-xs uppercase">{movie.genre}</p>
                 <Link to={movie.link}>
                   <button
                     className=" bg-[#FAD73A] text-base px-3

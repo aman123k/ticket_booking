@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
-import ShareRoundedIcon from "@mui/icons-material/ShareRounded";
+import { BiArrowBack } from "react-icons/bi";
+import { PiShareFatDuotone } from "react-icons/pi";
+import { RxCross2 } from "react-icons/rx";
 import { PVR } from "../data/malls";
-import ClearRoundedIcon from "@mui/icons-material/ClearRounded";
+import toast, { Toaster } from "react-hot-toast";
 
 function Screen() {
   const { Name, showTime, malls } = useParams();
@@ -13,7 +14,6 @@ function Screen() {
   const [card, setCard] = useState("");
   const [date, setDate] = useState("");
   const [cvv, setCvv] = useState("");
-  const [error, setError] = useState("");
   const [city, setCity] = useState("");
   const navigation = useNavigate();
   const cardNoPattern = /\b\d{4}\s\d{4}\s\d{4}\s\d{4}/;
@@ -56,49 +56,17 @@ function Screen() {
 
   const procidePayment = () => {
     if (zip === "" && card === "" && date === "" && cvv === "" && city === "") {
-      return (
-        setError("Pelese enter card details"),
-        setTimeout(() => {
-          setError("");
-        }, 1500)
-      );
+      return toast.error("Pelese enter card details");
     } else if (!card.match(cardNoPattern)) {
-      return (
-        setError("Pelese enter valid card number"),
-        setTimeout(() => {
-          setError("");
-        }, 1500)
-      );
+      return toast.error("Pelese enter valid card number");
     } else if (!date.match(datePattern)) {
-      console.log("hello");
-      return (
-        setError("Pelese enter Card Expriy date"),
-        setTimeout(() => {
-          setError("");
-        }, 1500)
-      );
+      return toast.error("Pelese enter Card Expriy date");
     } else if (city === "") {
-      console.log("hello");
-      return (
-        setError("Pelese select City"),
-        setTimeout(() => {
-          setError("");
-        }, 1500)
-      );
+      return toast.error("Pelese select City");
     } else if (!cvv.match(cvvPattern)) {
-      return (
-        setError("Pelese enter valid Cvv Number"),
-        setTimeout(() => {
-          setError("");
-        }, 1500)
-      );
+      return toast.error("Pelese enter valid Cvv Number");
     } else if (!zip.match(cord)) {
-      return (
-        setError("Pelese enter valid Zip cord"),
-        setTimeout(() => {
-          setError("");
-        }, 1500)
-      );
+      return toast.error("Pelese enter valid Zip cord");
     }
   };
   return (
@@ -116,17 +84,17 @@ function Screen() {
             }
             className=" text-lg font-bold cursor-pointer mr-2 mb-0.5"
           >
-            <ArrowBackRoundedIcon />
+            <BiArrowBack />
           </button>
           <div className="flex flex-col">
-            <p className="text-[16.5px] tracking-wide">{showTime}</p>
-            <p className="text-xs tracking-wider mt-[-1px] text-[#f3f0f0]">
+            <p className="text-[16.5px] tracking-wide capitalize">{showTime}</p>
+            <p className="text-xs tracking-wider mt-[-1px] text-[#f3f0f0] ">
               {Name}
             </p>
           </div>
         </div>
-        <div className=" flex gap-1">
-          <ShareRoundedIcon className=" cursor-pointer" />
+        <div className=" flex gap-1 ">
+          <PiShareFatDuotone className=" cursor-pointer text-xl" />
         </div>
       </header>
       <div className=" text-center mt-3">
@@ -214,8 +182,11 @@ function Screen() {
             <div>
               <p>Selected Seats Name :</p>
               <ul className="grid gap-3 w-40 grid-cols-4 mt-3 mb-5">
-                {selectedCeats.map((selectedCeat) => (
-                  <li className=" bg-[#FF4546] rounded-md px-1.5 py-1">
+                {selectedCeats.map((selectedCeat, index) => (
+                  <li
+                    key={index}
+                    className=" bg-[#FF4546] rounded-md px-1.5 py-1"
+                  >
                     {selectedCeat}
                   </li>
                 ))}
@@ -247,9 +218,7 @@ function Screen() {
         backdrop-opacity-10 opacity-30 bottom-0 ease-in-out 
          ${payment ? "left-0" : "left-[-100%]"}`}
       ></div>
-      {/* 
-      Payment seat
-       */}
+      {/*   Payment seat   */}
       <div
         className={`absolute bg-[#06060D] rounded-t-lg bottom-0  w-full h-min duration-700 px-3 
        ease-in-out ${payment ? "left-0" : "left-[-100%] "} rounded-t-md`}
@@ -257,7 +226,7 @@ function Screen() {
         <header className="mt-3 mb-2 text-white ">
           <div className=" flex items-center gap-2">
             <span onClick={() => setPayment(!payment)}>
-              <ClearRoundedIcon />
+              <RxCross2 className="text-xl cursor-pointer" />
             </span>
             <span
               className="text-[#130e0e] font-semibold text-[13px] px-2 py-1.5
@@ -364,17 +333,7 @@ function Screen() {
           </button>
         )}
       </div>
-      {/* 
-      Error Notification
-       */}
-      <div
-        className={`bg-red-500 fixed rounded-md
-         px-2 py-1 top-10 left-[50%] translate-x-[-50%]
-         duration-700 ease-in-out text-center text-sm
-        ${error ? "translate-y-[0]" : "translate-y-[-100px]"} `}
-      >
-        {error}
-      </div>
+      <Toaster />
     </section>
   );
 }

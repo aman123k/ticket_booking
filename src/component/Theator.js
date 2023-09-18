@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
-import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
-import ShareRoundedIcon from "@mui/icons-material/ShareRounded";
-import FilterListRoundedIcon from "@mui/icons-material/FilterListRounded";
-import GppGoodOutlinedIcon from "@mui/icons-material/GppGoodOutlined";
+import { BiArrowBack } from "react-icons/bi";
+import { ImSearch } from "react-icons/im";
+import { PiShareFatDuotone } from "react-icons/pi";
+import { IoFilter } from "react-icons/io5";
+import { MdOutlineGppGood } from "react-icons/md";
 import { compareAsc, format } from "date-fns";
 import { PVR } from "../data/malls";
 function Theator() {
@@ -42,19 +42,19 @@ function Theator() {
               }
               className=" text-lg font-bold cursor-pointer mr-2 "
             >
-              <ArrowBackRoundedIcon />
+              <BiArrowBack />
             </button>
-            <p className=" max-[340px]:text-sm">{Name}</p>
+            <p className=" max-[340px]:text-sm capitalize">{Name}</p>
           </div>
-          <div className=" flex gap-1">
-            <SearchRoundedIcon className=" cursor-pointer" />
-            <FilterListRoundedIcon className=" cursor-pointer" />
-            <ShareRoundedIcon className=" cursor-pointer" />
+          <div className=" flex gap-1 items-center">
+            <ImSearch className=" cursor-pointer" />
+            <IoFilter className=" cursor-pointer text-xl" />
+            <PiShareFatDuotone className=" cursor-pointer text-xl" />
           </div>
         </header>
         <div className=" text-white flex items-center gap-1 ml-4">
           <span className=" text-[#FAD73A] ">
-            <GppGoodOutlinedIcon />
+            <MdOutlineGppGood className="text-2xl" />
           </span>
           <span className="text-[12.4px] tracking-wide">
             Your Safety is our Priority
